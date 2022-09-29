@@ -6,7 +6,6 @@ import {
 } from "../ICategoriesRepository";
 
 class CategoriesRepository implements ICategoriesRepository {
-
   private repository: Repository<Category>;
 
   constructor() {
