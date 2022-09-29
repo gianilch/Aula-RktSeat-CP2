@@ -25,6 +25,7 @@ class User {
 
   @CreateDateColumn()
   created_at: Date;
+  id: string;
 
   constructor(){
     if(!this.user_id) {
