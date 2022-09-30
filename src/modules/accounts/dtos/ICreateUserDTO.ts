@@ -3,7 +3,7 @@ interface ICreateUserDTO {
   password: string;
   email: string;
   driver_license: string;
-  id?: string;
+  user_id?: string;
   avatar?:string;
 }
 
