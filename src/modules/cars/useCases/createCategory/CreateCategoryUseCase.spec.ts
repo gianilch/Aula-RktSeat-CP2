@@ -1,0 +1,52 @@
+import { AppError } from "@errors/AppError";
+import { CategoriesRepositoryInMemory } from "@modules/cars/repositories/in-memory/CategoriesRepositoryInMemory";
+import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
+
+describe("Create Category", () => {
+  let createCategoryUseCase: CreateCategoryUseCase;
+  let categoriesRepositoryInMemory: CategoriesRepositoryInMemory;
+
+  beforeEach(() => {
+    categoriesRepositoryInMemory = new CategoriesRepositoryInMemory();
+    createCategoryUseCase = new CreateCategoryUseCase(
+      categoriesRepositoryInMemory
+    );
+  });
+
+  it("should be abte to create a new category", async () => {
+    const category = {
+      name: "Category Test",
+      description: "Category description Test",
+    };
+
+    await createCategoryUseCase.execute({
+      name: category.name,
+      description: category.description,
+    });
+
+    const categoryCreated = await categoriesRepositoryInMemory.findByName(
+      category.name
+    );
+
+    expect(categoryCreated).toHaveProperty("category_id");
+  });
+
+  it("should not be abte to create a new category with same name", async () => {
+    expect(async () => {
+      const category = {
+        name: "Category Test",
+        description: "Category description Test",
+      };
+
+      await createCategoryUseCase.execute({
+        name: category.name,
+        description: category.description,
+      });
+
+      await createCategoryUseCase.execute({
+        name: category.name,
+        description: category.description,
+      });
+    }).rejects.toBeInstanceOf(AppError)
+  });
+});
