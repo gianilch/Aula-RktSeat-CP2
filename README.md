@@ -7,8 +7,7 @@
 
 **Regra de negócio - RN**
 *Não deve ser possível cadastrar um carro uma placa já existente.*
-Não deve ser possível alterar a placa de um carro já cadastrado.
-Quando o carro for cadastrado como disponível por padrão (avaible = true).
+*Quando o carro for cadastrado como disponível por padrão (avaible = true).*
 O usuário responsável pelo cadastro deve ser um usuário administrador.
 O carro precisa ter um categoria atrelada e ele.
 Deve ser possível listar todas as categorias.
