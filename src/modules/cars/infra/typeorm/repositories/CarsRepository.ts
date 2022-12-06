@@ -43,7 +43,7 @@ class CarsRepository implements ICarsRepository {
     return car;
   }
 
-  async findAvaible(
+  async findAvailable(
     brand?: string,
     category_id?: string,
     name?: string
