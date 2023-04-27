@@ -13,7 +13,7 @@ describe("Create Category", () => {
     );
   });
 
-  it("should be abte to create a new category", async () => {
+  it("should be able to create a new category", async () => {
     const category = {
       name: "Category Test",
       description: "Category description Test",
@@ -31,7 +31,7 @@ describe("Create Category", () => {
     expect(categoryCreated).toHaveProperty("category_id");
   });
 
-  it("should not be abte to create a new category with same name", async () => {
+  it("should not be able to create a new category with same name", async () => {
     expect(async () => {
       const category = {
         name: "Category Test",
@@ -47,6 +47,6 @@ describe("Create Category", () => {
         name: category.name,
         description: category.description,
       });
-    }).rejects.toBeInstanceOf(AppError)
+    }).rejects.toBeInstanceOf(AppError);
   });
 });

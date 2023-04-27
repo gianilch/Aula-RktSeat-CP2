@@ -11,10 +11,10 @@ interface IRequest {
 
 interface IReponse {
   user: {
-    name: string,
-    email: string
+    name: string;
+    email: string;
   };
-  token: string
+  token: string;
 }
 
 @injectable()
@@ -41,7 +41,7 @@ class AuthenticateUserUseCase {
 
     const token = sign({}, "f6abd6d42c491a12d96e841a3517c5a5", {
       subject: user.user_id,
-      expiresIn: "1d"
+      expiresIn: "1d",
     });
 
     const tokenReturn: IReponse = {
@@ -49,10 +49,10 @@ class AuthenticateUserUseCase {
       user: {
         name: user.name,
         email: user.email,
-      }
-    }
+      },
+    };
 
-    return tokenReturn
+    return tokenReturn;
   }
 }
 
