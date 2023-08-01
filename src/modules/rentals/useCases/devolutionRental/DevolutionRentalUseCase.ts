@@ -25,6 +25,8 @@ class DevolutionRentalUseCase {
     const car = await this.carsRepository.findById(rental.car_id);
     const minimum_daily = 1;
 
+    console.log(rental);
+
     if (!rental) {
       throw new AppError("Rental does not exists!");
     }
@@ -57,6 +59,7 @@ class DevolutionRentalUseCase {
 
     await this.rentalsRepository.create(rental);
     await this.carsRepository.updateAvailable(car.id, true);
+    return rental;
   }
 }
 
