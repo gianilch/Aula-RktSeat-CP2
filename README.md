@@ -59,3 +59,14 @@ Não deve ser possível cadastrar um novo aluguel caso já exista um aberto para
 Não deve ser possível cadastrar um novo aluguel caso já exista um aberto para o mesmo usuario.
 O usuário deve estar logado na aplicação.
 Ao realizar um aluguel, o status do carro deverá ser alterado para indisponível.
+
+# Recuperar Senha
+
+**RF**
+- Dever ser possível o usuário recuperar a senha informando o e-mail.
+- O usuário deve receber um e-mail com o passo a passo para a recuperação da senha.
+- O usuário deve conseguir inserir uma nova senha.
+
+**RN**
+- O usuário precisa informar uma nova senha.
+- O link enviado para a recuperação deve expirar em 3 horas.
