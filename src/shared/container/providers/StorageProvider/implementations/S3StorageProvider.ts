@@ -1,8 +1,9 @@
 import { S3 } from "aws-sdk";
-import { resolve } from "path";
-import { IStorageProvider } from "../IStorageProvider";
-import upload from "../../../../../config/upload";
 import fs from "fs";
+import mime from "mime";
+import { resolve } from "path";
+import upload from "../../../../../config/upload";
+import { IStorageProvider } from "../IStorageProvider";
 
 class S3StorageProvider implements IStorageProvider {
   private client: S3;
@@ -17,10 +18,29 @@ class S3StorageProvider implements IStorageProvider {
 
     const fileContent = await fs.promises.readFile(originalName);
 
-    await this.client.putObject();
+    const ContentType = mime.getType(originalName);
+
+    await this.client
+      .putObject({
+        Bucket: `${process.env.AWS_BUCKET}/${folder}`,
+        Key: file,
+        ACL: "public-read",
+        Body: fileContent,
+        ContentType,
+      })
+      .promise();
+
+    await fs.promises.unlink(originalName);
+
+    return file;
   }
   async delete(file: string, folder: string): Promise<void> {
-    throw new Error("Method not implemented.");
+    await this.client
+      .deleteObject({
+        Bucket: `${process.env.AWS_BUCKET}/${folder}`,
+        Key: file,
+      })
+      .promise();
   }
 }
 
